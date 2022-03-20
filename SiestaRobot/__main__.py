@@ -85,10 +85,6 @@ def get_readable_time(seconds: int) -> str:
 
 SIESTA_IMG = "https://telegra.ph/file/6d3e3ef24f64fb6e35df0.jpg"
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project by contacting @saint_foire \
- Supporting isnt always financial! \
- Those who cannot provide monetary support are welcome to help us develop the bot at ."""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -217,7 +213,7 @@ def start(update: Update, context: CallbackContext):
                         ],
                         [
                             InlineKeyboardButton(
-                                text=gs(chat.id, "add_bot_to_group_button"), url="t.me/Siestaxbot?startgroup=new"),
+                                text=gs(chat.id, "add_bot_to_group_button"), url="t.me/TeddyxRobot_bot?startgroup=new"),
                         ]
                     ]
                 ),
@@ -386,11 +382,8 @@ def siesta_about_callback(update, context):
                         InlineKeyboardButton(text=gs(chat.id, "notes_button"), callback_data="siesta_notes"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), callback_data="siesta_support"),
-                        InlineKeyboardButton(text="Credits", callback_data="siesta_credit"),
-                    ],
-                    [
-                        InlineKeyboardButton(text=gs(chat.id, "source_button"), url="https://github.com/shiinobu/SiestaRobot"),
+                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), callback_data="Teddyrobot_support"),
+       
                     ],
                     [
                     InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_back"),
@@ -417,7 +410,7 @@ def siesta_about_callback(update, context):
                             InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
                         ],
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "add_bot_to_group_button"), url="t.me/Siestaxbot?startgroup=new"),
+                            InlineKeyboardButton(text=gs(chat.id, "add_bot_to_group_button"), url="t.me/TeddyxRobot_bot?startgroup=new"),
                         ]
                     ]
                 ),
@@ -459,8 +452,8 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), url="t.me/machinaxupport"),
-                        InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/machinaxupdate"),
+                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), url="t.me/Teddyrobot_support"),
+                        InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/Teddyrobot_support"),
                     ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
@@ -477,11 +470,7 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="Vain", url="https://github.com/shiinobu"),
-                    ],
-                    [
-                        InlineKeyboardButton(text="Paul Larsen", url="https://github.com/PaulSonOfLars"),
-                        InlineKeyboardButton(text="TheHamkerCat", url="https://github.com/TheHamkerCat"),
+                        InlineKeyboardButton(text="suru", url="https://github.com/SuruXmanager"),
                     ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
@@ -528,7 +517,7 @@ def Source_about_callback(update, context):
                             InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
                         ],
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "add_bot_to_group_button"), url="t.me/Siestaxbot?startgroup=new"),
+                            InlineKeyboardButton(text=gs(chat.id, "add_bot_to_group_button"), url="t.me/TeddyxRobot_bot?startgroup=new"),
                         ]
                     ]
                 ),
@@ -555,7 +544,7 @@ def get_help(update: Update, context: CallbackContext):
                         [
                             InlineKeyboardButton(
                                 text=gs(chat.id, "group_help_button"),
-                                url="t.me/{}?start=ghelp_{}".format(
+                                url="t.me/TeddyxRobot_bot?start=ghelp_{}".format(
                                     context.bot.username, module
                                 ),
                             )
@@ -572,7 +561,7 @@ def get_help(update: Update, context: CallbackContext):
                     [
                         InlineKeyboardButton(
                             text=gs(chat.id, "group_help_button"),
-                            url="t.me/{}?start=help".format(context.bot.username),
+                            url="t.me/TeddyxRobot_bot?start=help".format(context.bot.username),
                         )
                     ]
                 ]
@@ -743,7 +732,7 @@ def get_settings(update: Update, context: CallbackContext):
                         [
                             InlineKeyboardButton(
                                 text=gs(chat.id, "group_settings_button"),
-                                url="t.me/{}?start=stngs_{}".format(
+                                url="t.me/TeddyxRobot_bot?start=stngs_{}".format(
                                     context.bot.username, chat.id
                                 ),
                             )
@@ -816,7 +805,7 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}", 
-                f"""**Yes Darling ❤️, i am activated!**""",
+                f"""**yᴇꜱ ᴅᴀʀʟɪɴɢ 💖, ɪ ᴀᴍ ᴀʟɪᴠᴇ ⚡️!**""",
                 parse_mode=ParseMode.MARKDOWN
             )
         except Unauthorized:
