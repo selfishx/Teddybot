@@ -383,7 +383,6 @@ def siesta_about_callback(update, context):
                     ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), callback_data="Teddyrobot_support"),
-       
                     ],
                     [
                     InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_back"),
@@ -440,6 +439,10 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
+                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), url="t.me/Teddyrobot_support"),
+                        InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/Teddyrobot_support"),
+                    ],
+                    [
                         InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
                     ]
                 ]
@@ -451,10 +454,6 @@ def siesta_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [
-                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), url="t.me/Teddyrobot_support"),
-                        InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/Teddyrobot_support"),
-                    ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
                     ]
@@ -805,7 +804,7 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}", 
-                f"""**yᴇꜱ ᴅᴀʀʟɪɴɢ 💖, ɪ ᴀᴍ ᴀʟɪᴠᴇ ⚡️!**""",
+                f"""**Yes Darling ❤️, i am activated!**""",
                 parse_mode=ParseMode.MARKDOWN
             )
         except Unauthorized:
