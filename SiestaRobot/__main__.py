@@ -205,7 +205,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="teddy"),
                         ],
                         [
                             InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
