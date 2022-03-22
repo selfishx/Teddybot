@@ -41,7 +41,7 @@ TEDDY_PICS = (
 )
 
 
-@aasf.on(events.NewMessage(incoming=True, pattern="/repo"))
+(events.NewMessage(incoming=True, pattern="/repo"))
 async def repo(e):
     k = f"**Hoi** {e.sender.first_name} **Thx For Using Here is My Old Repo Current One Is Private 🔥**"
     BUTTON = [
