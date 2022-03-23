@@ -730,7 +730,7 @@ def adminlist(update, context):
             if custom_title:
                 text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
 
-    text += "\n🌟 A∂мιиѕ:"
+    text += "\n🌟 Admins:"
 
     custom_admin_list = {}
     normal_admin_list = []
