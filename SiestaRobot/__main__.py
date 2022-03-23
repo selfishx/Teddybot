@@ -83,7 +83,7 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-SIESTA_IMG = "https://telegra.ph/file/6d3e3ef24f64fb6e35df0.jpg"
+SIESTA_IMG = "https://telegra.ph/file/608bc7433b97c49cba5d3.mp4"
 
 
 IMPORTED = {}
@@ -205,7 +205,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="Teddy_"),
                         ],
                         [
                             InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
@@ -382,7 +382,7 @@ def siesta_about_callback(update, context):
                         InlineKeyboardButton(text=gs(chat.id, "notes_button"), callback_data="siesta_notes"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), callback_data="Teddyrobot_support"),
+                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), callback_data="https://t.me/XO_XPAM"),
                     ],
                     [
                     InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_back"),
@@ -439,8 +439,8 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), url="t.me/Teddyrobot_support"),
-                        InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/Teddyrobot_support"),
+                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), url="https://t.me/XO_XPAM"),
+                        InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/XO_XPAM"),
                     ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
