@@ -68,7 +68,7 @@ kill_you = [
     "------------------>",
     "------>;(^。^)ノ",
     "(￣ー￣) DED",
-    "**Target killed successfully",
+    "**Tαяgєт кιℓℓє∂ ѕυ¢¢єѕѕfυℓℓу",
 ]
 
 
@@ -108,7 +108,7 @@ love_siren = [
 
 
 hack_you = [
-    "Looking for WhatsApp databases in targeted person...",
+    "Lσσкιиg fσя ∂αтαвαѕєѕ σи тαяgєтє∂ ρєяѕσи ωнαтѕαρρ...",
     " User online: True\nTelegram access: True\nRead Storage: True ",
     "Hacking... 20.63%\n[███░░░░░░░░░░░░░░░░░]",
     "Hacking... 86.21%\n[███████████████░░░░░]",
@@ -244,11 +244,11 @@ def bombs(update: Update, context: CallbackContext):
 
 def hack(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
-    msg = update.effective_message.reply_text("Target selected")
+    msg = update.effective_message.reply_text("Tαяgєт ѕєℓє¢тє∂")
     for x in range(EDIT_TIMES):
         msg.edit_text(hack_you[x % 5])
         time.sleep(EDIT_SLEEP)
-    msg.edit_text("successful hacked all data send on my Database")
+    msg.edit_text("Sυ¢¢єѕѕfυℓℓу нα¢кє∂ ∂αтα ѕєит тσ ∂αтαвαѕє")
 
 
 def love(update: Update, context: CallbackContext):
