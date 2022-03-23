@@ -82,16 +82,16 @@ async def detect_nsfw(_, message):
         return
     await message.reply_text(
         f"""
-**NSFW Image Detected & Deleted Successfully!
+**NSFW ιмαgє ∂єтє¢тє∂ & ∂єℓєтє∂ ѕυ¢¢єѕѕfυℓℓу!
 ————————————————————————**
-**User:** {message.from_user.mention} [`{message.from_user.id}`]
-**Safe:** `{results.neutral} %`
-**Porn:** `{results.porn} %`
-**Adult:** `{results.sexy} %`
-**Hentai:** `{results.hentai} %`
-**Drawings:** `{results.drawings} %`
+**Uѕєя:** {message.from_user.mention} [`{message.from_user.id}`]
+**Sαfє:** `{results.neutral} %`
+**Pσяи:** `{results.porn} %`
+**A∂υℓт:** `{results.sexy} %`
+**Hєитαι:** `{results.hentai} %`
+**Dяαωιиgѕ:** `{results.drawings} %`
 **————————————————————————**
-__Use `/antinsfw off` to disable this.__
+__Uѕє `/antinsfw off` тσ ∂ιѕαвℓє тн.__
 """
     )
 
@@ -101,7 +101,7 @@ __Use `/antinsfw off` to disable this.__
 async def nsfw_scan_command(_, message):
     if not message.reply_to_message:
         await message.reply_text(
-            "`Reply to an image/document/sticker/animation to scan it.`"
+            "`Rєρℓу тσ αи ιмαgє/∂σ¢υмєит/ѕтι¢кєя/αиιмαтισи тσ ѕ¢αи ιт.`"
         )
         return
     reply = message.reply_to_message
@@ -113,13 +113,13 @@ async def nsfw_scan_command(_, message):
         and not reply.video
     ):
         await message.reply_text(
-            "`Reply to an image/document/sticker/animation to scan it.`"
+            "`Rєρℓу тσ αи ιмαgє/∂σ¢υмєит/ѕтι¢кєя/αиιмαтισи тσ ѕ¢αи ιт.`"
         )
         return
     m = await message.reply_text("`Scanning...`")
     file_id = await get_file_id_from_message(reply)
     if not file_id:
-        return await m.edit("`Something wrong happened LOL`")
+        return await m.edit("`Sσмєтнιиg ωяσиg нαρρєиє∂ ℓσℓ`")
     file = await pbot.download_media(file_id)
     try:
         results = await arq.nsfw_scan(file=file)
@@ -131,11 +131,11 @@ async def nsfw_scan_command(_, message):
     results = results.result
     await m.edit(
         f"""
-**Neutral:** `{results.neutral} %`
-**Porn:** `{results.porn} %`
-**Hentai:** `{results.hentai} %`
+**Nєυтяαℓ:** `{results.neutral} %`
+**Pσяи:** `{results.porn} %`
+**Hєитαι:** `{results.hentai} %`
 **Sexy:** `{results.sexy} %`
-**Drawings:** `{results.drawings} %`
+**Dяαωιиgѕ:** `{results.drawings} %`
 **NSFW:** `{results.is_nsfw}`
 """
     )
@@ -155,12 +155,12 @@ async def nsfw_enable_disable(_, message):
     if status == "on":
         nsfw_on(chat_id)
         await message.reply_text(
-            "Enabled AntiNSFW System. I will Delete Messages Containing Inappropriate Content."
+            "Eиαвℓє∂ αитιиѕfω ѕуѕтєм. I ωιℓℓ ∂єℓєтє мєѕѕαgєѕ ¢σитαιиιиg ιиαρρяσρяιαтє ¢σитєит."
         )
     elif status == "off":
         nsfw_off(chat_id)
-        await message.reply_text("Disabled AntiNSFW System.")
+        await message.reply_text("Dιѕαвℓє∂ αитιиѕfω ѕуѕтєм.")
     else:
         await message.reply_text(
-            "`Unknown Suffix, Use /antinsfw [enable|disable]`"
+            "`Uикиσωи ѕυffιχ, Use /antinsfw [enable|disable]`"
         )
