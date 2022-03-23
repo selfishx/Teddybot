@@ -40,7 +40,7 @@ def kukirm(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Flare Chatbot disable by {}.".format(mention_html(user.id, user.first_name)),
+                "Tє∂∂у ¢нαувσт ∂ιѕαвℓє∂ ву {}.".format(mention_html(user.id, user.first_name)),
                 parse_mode=ParseMode.HTML,
             )
 
@@ -66,7 +66,7 @@ def kukiadd(update: Update, context: CallbackContext) -> str:
             )
         else:
             update.effective_message.edit_text(
-                "Flare Chatbot enable by {}.".format(mention_html(user.id, user.first_name)),
+                "Tє∂∂у ¢нαтвσт єиαвℓє∂ ву {}.".format(mention_html(user.id, user.first_name)),
                 parse_mode=ParseMode.HTML,
             )
 
@@ -81,11 +81,11 @@ def kuki(update: Update, context: CallbackContext):
     msg = "Choose an option"
     keyboard = InlineKeyboardMarkup([[
         InlineKeyboardButton(
-            text="Enable",
+            text="Eиαвℓє",
             callback_data="add_chat({})")],
        [
         InlineKeyboardButton(
-            text="Disable",
+            text="Dιѕαвℓє",
             callback_data="rm_chat({})")]])
     message.reply_text(
         msg,
@@ -142,10 +142,10 @@ __help__ = """
 Chatbot utilizes the Kuki's api which allows Kuki to talk and provide a more interactive group chat experience.
 *Admins only Commands*:
   ➢ `/Chatbot`*:* Shows chatbot control panel
-*Powered by ItelAi*
+*Powered by Teddy*
 """
 
-__mod_name__ = "ChatBot"
+__mod_name__ = "Chatbot"
 
 
 CHATBOTK_HANDLER = CommandHandler("chatbot", kuki)
