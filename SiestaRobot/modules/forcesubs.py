@@ -91,20 +91,20 @@ def _check_member(client, message):
                         disable_web_page_preview=True,
                         reply_markup=InlineKeyboardMarkup(
                             [
-                                [
-                                    InlineKeyboardButton(
-                                        "Join Channel",
-                                        url="https://t.me/{}".format(channel),
-                                    )
-                                ],
-                                [
-                                    InlineKeyboardButton(
-                                        "Unmute Me", callback_data="onUnMuteRequest"
-                                    )
-                                ],
-                            ]
-                        ),
-                    )
+                                    [
+                                        InlineKeyboardButton(
+                                            "Join Channel",
+                                            url="https://t.me/{}".format(channel),
+                                        )
+                                    ],
+                                    [
+                                        InlineKeyboardButton(
+                                            "UnMute Me", callback_data="onUnMuteRequest"
+                                        )
+                                    ],
+                                ]
+                            ),
+                        )
                     client.restrict_chat_member(
                         chat_id, user_id, ChatPermissions(can_send_messages=False)
                     )
