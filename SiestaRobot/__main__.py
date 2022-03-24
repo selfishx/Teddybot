@@ -90,20 +90,20 @@ PM_START_TEXT = """
 ✪ Hit /help to see my available commands.
 """
 
-buttons = [
-    [
-        InlineKeyboardButton(text="✨𝐀ʙᴏᴜᴛ Teddy 𝐑ᴏʙᴏᴛ✨", callback_data="siesta_"),
-    ],
-    [
-        InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
-        InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
-        ),
-    ],
-    [
-        InlineKeyboardButton(
-            text="🗯️𝐀ᴅᴅ Teddy 𝐓ᴏ 𝐘ᴏᴜʀ 𝐆ʀᴏᴜᴘ", url="t.me/TeddyxRobot_bot?startgroup=new"),
-    ],
-]
+buttons =                     [
+                        [
+                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+                        ],
+                        [
+                            InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
+                            InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                text=gs(chat.id, "add_bot_to_group_button"), url="t.me/Siestaxbot?startgroup=new"),
+                        ]
+                    ]
+                ),
 
 
 HELP_STRINGS = """
