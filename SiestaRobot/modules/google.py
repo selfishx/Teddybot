@@ -103,15 +103,15 @@ async def okgoogle(img):
         photo = io.BytesIO()
         await tbot.download_media(message, photo)
     else:
-        await img.reply("`Reply to photo or sticker nigger.`")
+        await img.reply("`Rєρℓу тσ ρнσтσ σя ѕтι¢кєя иιggєя.`")
         return
 
     if photo:
-        dev = await img.reply("`Processing...`")
+        dev = await img.reply("`Pяσ¢єѕѕιиg...`")
         try:
             image = Image.open(photo)
         except OSError:
-            await dev.edit("`Unsupported sexuality, most likely.`")
+            await dev.edit("`υиѕυρρσятє∂ ѕєχυαℓιту, мσѕт ℓιкєℓу.`")
             return
         name = "okgoogle.png"
         image.save(name, "PNG")
@@ -124,11 +124,11 @@ async def okgoogle(img):
 
         if response != 400:
             await dev.edit(
-                "`Image successfully uploaded to Google. Maybe.`"
+                "`Iмαgє ѕυ¢¢єѕѕfυℓℓу υρℓσα∂є∂ тσ gσσgℓє. мαу вє.`"
                 "\n`Parsing source now. Maybe.`"
             )
         else:
-            await dev.edit("`Google told me to fuck off.`")
+            await dev.edit("`Gσσgℓє тσℓ∂ мє тσ f**к σff`")
             return
 
         os.remove(name)
@@ -137,9 +137,9 @@ async def okgoogle(img):
         imgspage = match["similar_images"]
 
         if guess and imgspage:
-            await dev.edit(f"[{guess}]({fetchUrl})\n\n`Looking for this Image...`")
+            await dev.edit(f"[{guess}]({fetchUrl})\n\n`Lσσкιиg fσя тнιѕ ιмαgє...`")
         else:
-            await dev.edit("`Can't find this piece of shit.`")
+            await dev.edit("`Cαи'т fιи∂ тнιѕ ριє¢є σf ѕнιт.`")
             return
 
         if img.pattern_match.group(1):
@@ -251,13 +251,13 @@ async def apk(e):
         app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
         app_details += " <b>" + app_name + "</b>"
         app_details += (
-            "\n\n<code>Developer :</code> <a href='"
+            "\n\n<code>Dєνєℓσρєя :</code> <a href='"
             + app_dev_link
             + "'>"
             + app_dev
             + "</a>"
         )
-        app_details += "\n<code>Rating :</code> " + app_rating.replace(
+        app_details += "\n<code>Rαтιиg :</code> " + app_rating.replace(
             "Rated ", "⭐ "
         ).replace(" out of ", "/").replace(" stars", "", 1).replace(
             " stars", "⭐ "
@@ -265,16 +265,16 @@ async def apk(e):
             "five", "5"
         )
         app_details += (
-            "\n<code>Features :</code> <a href='"
+            "\n<code>Fєαтυяєѕ :</code> <a href='"
             + app_link
             + "'>View in Play Store</a>"
         )
-        app_details += "\n\n===> Siesta <==="
+        app_details += "\n\n===> Tє∂∂у <==="
         await e.reply(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
-        await e.reply("No result found in search. Please enter **Valid app name**")
+        await e.reply("Nσ яєѕυℓтѕ fσυи∂ ιи ѕєαя¢н. ρℓєαѕ єитєя *ναℓι∂ αρρ иαмє*")
     except Exception as err:
-        await e.reply("Exception Occured:- " + str(err))
+        await e.reply("Eχ¢єρтισи σ¢¢υяє∂:- " + str(err))
 
 
 def helps(chat):
