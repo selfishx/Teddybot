@@ -95,9 +95,8 @@ buttons = [
         InlineKeyboardButton(text="✨𝐀ʙᴏᴜᴛ Teddy 𝐑ᴏʙᴏᴛ✨", callback_data="siesta_"),
     ],
     [
-        InlineKeyboardButton(text="📣𝐇ᴇʟᴘ", callback_data="help_back"),
-        InlineKeyboardButton(
-            text="💫𝐈ɴʟɪɴᴇ​​", switch_inline_query_current_chat=""
+        InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
+        InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
         ),
     ],
     [
