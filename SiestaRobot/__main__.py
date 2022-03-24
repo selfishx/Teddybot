@@ -92,6 +92,22 @@ PM_START_TEXT = """
 ┗━━━━━━━━•❃°•°❀°•°❃•━━━━━━━━┛
 ✪ Hit /help to see my available commands.
 """
+buttons = [
+    [
+        InlineKeyboardButton(text="✨𝐀ʙᴏᴜᴛ 𝐕ᴇɴᴏᴍ 𝐑ᴏʙᴏᴛ✨", callback_data="siesta_"),
+    ],
+    [
+        InlineKeyboardButton(text="📣𝐇ᴇʟᴘ", callback_data="help_back"),
+        InlineKeyboardButton(
+            text="💫𝐈ɴʟɪɴᴇ​​", switch_inline_query_current_chat=""
+        ),
+    ],
+    [
+        InlineKeyboardButton(
+            text="🗯️𝐀ᴅᴅ 𝐕ᴇɴᴏᴍ 𝐓ᴏ 𝐘ᴏᴜʀ 𝐆ʀᴏᴜᴘ", url="t.me/GOD_VENOM_ROBOT?startgroup=new"),
+    ],
+]
+
 
 IMPORTED = {}
 MIGRATEABLE = []
