@@ -389,14 +389,14 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="ᴀᴅᴍɪɴs", callback_data="siesta_admin"),
-                        InlineKeyboardButton(text="ɴᴏᴛᴇs", callback_data="siesta_notes"),
+                        InlineKeyboardButton(text="Admins", callback_data="siesta_admin"),
+                        InlineKeyboardButton(text=gs(chat.id, "notes_button"), callback_data="siesta_notes"),
                     ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "source_button"), url="https://xnxx.com"),
                     ],
                     [
-                    InlineKeyboardButton(text="ɢᴏ ʙᴀᴄᴋ", callback_data="siesta_"),
+                    InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_back"),
                     ]
                 ]
             ),
