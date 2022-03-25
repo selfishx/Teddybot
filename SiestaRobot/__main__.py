@@ -407,7 +407,7 @@ def siesta_about_callback(update, context):
         first_name = update.effective_user.first_name
         uptime = get_readable_time((time.time() - StartTime))
         query.message.edit_text(
-                text=gs(chat.id, "pm_start_text").format(
+            PM_START_TEXT.format(
                     escape_markdown(first_name),
                     escape_markdown(uptime),
                     sql.num_users(),
