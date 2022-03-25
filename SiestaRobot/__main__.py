@@ -209,7 +209,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+        InlineKeyboardButton(text="✨𝐀ʙᴏᴜᴛ Teddy 𝐑ᴏʙᴏᴛ✨", callback_data="siesta_"),
                         ],
                         [
                             InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
@@ -459,7 +459,11 @@ def siesta_about_callback(update, context):
 
     elif query.data == "siesta_notes":
         query.message.edit_text(
-            text=gs(chat.id, "pm_about_notes_text"),
+            text=f"<b>๏ Setting up notes</b>"
+            f"\nYou can save message/media/audio or anything as notes"
+            f"\nto get a note simply use # at the beginning of a word"
+            f"\n\nYou can also set buttons for notes and filters (refer help menu)",
+
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -471,7 +475,9 @@ def siesta_about_callback(update, context):
         )
     elif query.data == "siesta_support":
         query.message.edit_text(
-            text=gs(chat.id, "pm_about_support_text"),
+            text="*๏ Teddy sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛs*"
+            "\nJoin My Support Group/Channel for see or report a problem on Teddy.",
+
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -494,11 +500,7 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="Vain", url="https://github.com/shiinobu"),
-                    ],
-                    [
-                        InlineKeyboardButton(text="Paul Larsen", url="https://github.com/PaulSonOfLars"),
-                        InlineKeyboardButton(text="TheHamkerCat", url="https://github.com/TheHamkerCat"),
+                        InlineKeyboardButton(text="Suru", url="https://github.com/SuruXmanager"),
                     ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
@@ -514,9 +516,16 @@ def Source_about_callback(update, context):
     if query.data == "source_":
         query.message.edit_text(
             text="๏›› This advance command for Musicplayer."
-            "\n\n๏ Command for admins and member can you see with command bellow."
-            "\n • `/mhelp` - checking help music module (only in pm bot)"
-            "\n • `/msettings` - setting your authorization music module",
+            "\n\n๏ Command for admins only."
+            "\n • `/reload` - For refreshing the adminlist."
+            "\n • `/pause` - To pause the playback."
+            "\n • `/resume` - To resuming the playback You've paused."
+            "\n • `/skip` - To skipping the player."
+            "\n • `/end` - For end the playback."
+            "\n • `/musicplayer <on/off>` - Toggle for turn ON or turn OFF the musicplayer."
+            "\n\n๏ Command for all members."
+            "\n • `/play` <query /reply audio> - Playing music via YouTube."
+            "\n • `/playlist` - To playing a playlist of groups or your personal playlist",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -600,7 +609,7 @@ def get_help(update: Update, context: CallbackContext):
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
         text = (
-            "Here is the available help for the *{}* module:\n".format(
+            "𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴𝙴 𝙰𝚅𝙰𝙸𝙻𝙰𝙱𝙻𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝚃𝙷𝙴 *{}* 𝙼𝙾𝙳𝚄𝙻𝙴:\n".format(
                 HELPABLE[module].__mod_name__
             )
             + HELPABLE[module].helps
@@ -677,7 +686,7 @@ def settings_button(update: Update, context: CallbackContext):
             chat_id = mod_match.group(1)
             module = mod_match.group(2)
             chat = bot.get_chat(chat_id)
-            text = gs(chat.id, "pm_settings_groups_text").format(
+            text = "*{}* 𝙷𝙰𝚂 𝚃𝙷𝙴 𝙵𝙾𝙻𝙻𝙾𝚆𝙸𝙽𝙶 𝚂𝙴𝚃𝚃𝙸𝙽𝙶𝚂 𝙵𝙾𝚁 𝚃𝙷𝙴 *{}* 𝙼𝙾𝙳𝚄𝙻𝙴 ☞︎︎︎\n\n".format(
                 escape_markdown(chat.title), CHAT_SETTINGS[module].__mod_name__
             ) + CHAT_SETTINGS[module].__chat_settings__(chat_id, user.id)
             query.message.reply_text(
