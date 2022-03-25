@@ -373,6 +373,7 @@ def help_button(update, context):
 
 def siesta_about_callback(update, context):
     query = update.callback_query
+        chat = update.effective_chat
     if query.data == "Teddy_":
         query.message.edit_text(
             text="๏ 𝙸'𝙼 *TEDDY*, 𝙰 𝙿𝙾𝚆𝙴𝚁𝙵𝚄𝙻𝙻 𝙶𝚁𝙾𝚄𝙿 𝙼𝙰𝙽𝙰𝙶𝙴𝙼𝙴𝙽𝚃 𝙱𝙾𝚃 𝙱𝚄𝙸𝙻𝚃 𝚃𝙾 𝙷𝙴𝙻𝙿 𝚈𝙾𝚄 𝙼𝙰𝙽𝙰𝙶𝙴 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙴𝙰𝚂𝙸𝙻𝚈"
