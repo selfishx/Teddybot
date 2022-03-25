@@ -390,13 +390,13 @@ def siesta_about_callback(update, context):
                 [
                     [
                         InlineKeyboardButton(text="ᴀᴅᴍɪɴs", callback_data="siesta_admin"),
-                        InlineKeyboardButton(text="ɴᴏᴛᴇs"), callback_data="siesta_notes"),
+                        InlineKeyboardButton(text="ɴᴏᴛᴇs", callback_data="siesta_notes"),
                     ],
                     [
                         InlineKeyboardButton(text=gs(chat.id, "source_button"), url="https://xnxx.com"),
                     ],
                     [
-                    InlineKeyboardButton(text="ɢᴏ ʙᴀᴄᴋ"), callback_data="siesta_"),
+                    InlineKeyboardButton(text="ɢᴏ ʙᴀᴄᴋ", callback_data="siesta_"),
                     ]
                 ]
             ),
