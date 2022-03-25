@@ -209,7 +209,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-        InlineKeyboardButton(text="✨𝐀ʙᴏᴜᴛ Teddy 𝐑ᴏʙᴏᴛ✨", callback_data="siesta_"),
+                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
                         ],
                         [
                             InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
@@ -217,7 +217,7 @@ def start(update: Update, context: CallbackContext):
                         ],
                         [
                             InlineKeyboardButton(
-                                text=gs(chat.id, "add_bot_to_group_button"), url="t.me/TeddyxRobot_bot?startgroup=new"),
+                                text=gs(chat.id, "add_bot_to_group_button"), url="t.me/Siestaxbot?startgroup=new"),
                         ]
                     ]
                 ),
@@ -373,7 +373,7 @@ def help_button(update, context):
 
 def siesta_about_callback(update, context):
     query = update.callback_query
-    if query.data == "siesta_":
+    if query.data == "Teddy_":
         query.message.edit_text(
             text="๏ 𝙸'𝙼 *TEDDY*, 𝙰 𝙿𝙾𝚆𝙴𝚁𝙵𝚄𝙻𝙻 𝙶𝚁𝙾𝚄𝙿 𝙼𝙰𝙽𝙰𝙶𝙴𝙼𝙴𝙽𝚃 𝙱𝙾𝚃 𝙱𝚄𝙸𝙻𝚃 𝚃𝙾 𝙷𝙴𝙻𝙿 𝚈𝙾𝚄 𝙼𝙰𝙽𝙰𝙶𝙴 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙴𝙰𝚂𝙸𝙻𝚈"
             "\n• 𝙸 𝙲𝙰𝙽 𝚁𝙴𝚂𝚃𝚁𝙸𝙲𝚃 𝚄𝚂𝙴𝚁𝚂"
@@ -384,6 +384,7 @@ def siesta_about_callback(update, context):
             "\n• 𝙸 𝙲𝙷𝙴𝙲𝙺 𝙵𝙾𝚁 𝙰𝙳𝙼𝙸𝙽𝚂' 𝙿𝙴𝚁𝙼𝙸𝚂𝚂𝙾𝙽 𝙱𝙴𝙵𝙾𝚁𝙴 𝙴𝚇𝙴𝙲𝚄𝚃𝙸𝙽𝙶 𝙰𝙽𝙳 𝙲𝙾𝙼𝙼𝙰𝙽𝙳 𝙰𝙽𝙳 𝙼𝙾𝚁𝙴𝚂𝚃𝚄𝙵𝙵𝚂"
             "\n\n_TEDDY'S 𝙻𝙸𝙲𝙴𝙽𝚂𝙴𝚂 𝚄𝙽𝙳𝙴𝚁 𝚃𝙷𝙴 𝙶𝙽𝚄 𝙶𝙴𝙽𝙴𝚁𝙰𝙻 𝙿𝚄𝙱𝙻𝙸𝙲 𝙻𝙸𝙲𝙴𝙽𝚂𝙴𝙳 𝚅3.0_"
             "\n\n 𝙲𝙻𝙸𝙲𝙺 𝙾𝙽 𝙱𝚄𝚃𝚃𝙾𝙽 𝙱𝙴𝙻𝙻𝙾𝚆 𝚃𝙾 𝙶𝙴𝚃 𝙱𝙰𝚂𝙸𝙲 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 TEDDY 𝚁𝙾𝙱𝙾𝚃",
+
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -393,7 +394,11 @@ def siesta_about_callback(update, context):
                         InlineKeyboardButton(text=gs(chat.id, "notes_button"), callback_data="siesta_notes"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "source_button"), url="https://xnxx.com"),
+                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), callback_data="siesta_support"),
+                        InlineKeyboardButton(text="Credits", callback_data="siesta_credit"),
+                    ],
+                    [
+                        InlineKeyboardButton(text=gs(chat.id, "source_button"), url="https://github.com/shiinobu/SiestaRobot"),
                     ],
                     [
                     InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_back"),
@@ -413,7 +418,7 @@ def siesta_about_callback(update, context):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="Teddy_"),
                         ],
                         [
                             InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
@@ -431,21 +436,13 @@ def siesta_about_callback(update, context):
 
     elif query.data == "siesta_admin":
         query.message.edit_text(
-            text=f"*๏ Let's make your group bit effective now*"
-            "\nCongragulations, Teddy Robot is now ready to manage your group."
-            "\n\n*Admin Tools*"
-            "\nBasic Admin tools help you to protect and powerup your group."
-            "\nYou can ban members, Kick members, Promote someone as admin through commands of bot."
-            "\n\n*Greetings*"
-            "\nLets set a welcome message to welcome new users coming to your group."
-            "\nsend `/setwelcome [message]` to set a welcome message!",
-
+            text=gs(chat.id, "pm_about_admin_text"),
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="Teddy_"),
                     ]
                 ]
             ),
@@ -453,25 +450,19 @@ def siesta_about_callback(update, context):
 
     elif query.data == "siesta_notes":
         query.message.edit_text(
-            text=f"<b>๏ Setting up notes</b>"
-            f"\nYou can save message/media/audio or anything as notes"
-            f"\nto get a note simply use # at the beginning of a word"
-            f"\n\nYou can also set buttons for notes and filters (refer help menu)",
-
+            text=gs(chat.id, "pm_about_notes_text"),
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="Teddy_"),
                     ]
                 ]
             ),
         )
     elif query.data == "siesta_support":
         query.message.edit_text(
-            text="*๏ Teddy sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛs*"
-            "\nJoin My Support Group/Channel for see or report a problem on Teddy.",
-
+            text=gs(chat.id, "pm_about_support_text"),
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -480,7 +471,7 @@ def siesta_about_callback(update, context):
                         InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/XO_XPAM"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="Teddy_"),
                     ]
                 ]
             ),
@@ -494,10 +485,14 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="Suru", url="https://github.com/SuruXmanager"),
+                        InlineKeyboardButton(text="Vain", url="https://github.com/shiinobu"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text="Paul Larsen", url="https://github.com/PaulSonOfLars"),
+                        InlineKeyboardButton(text="TheHamkerCat", url="https://github.com/TheHamkerCat"),
+                    ],
+                    [
+                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="Teddy_"),
                     ]
                 ]
             ),
@@ -510,22 +505,15 @@ def Source_about_callback(update, context):
     if query.data == "source_":
         query.message.edit_text(
             text="๏›› This advance command for Musicplayer."
-            "\n\n๏ Command for admins only."
-            "\n • `/reload` - For refreshing the adminlist."
-            "\n • `/pause` - To pause the playback."
-            "\n • `/resume` - To resuming the playback You've paused."
-            "\n • `/skip` - To skipping the player."
-            "\n • `/end` - For end the playback."
-            "\n • `/musicplayer <on/off>` - Toggle for turn ON or turn OFF the musicplayer."
-            "\n\n๏ Command for all members."
-            "\n • `/play` <query /reply audio> - Playing music via YouTube."
-            "\n • `/playlist` - To playing a playlist of groups or your personal playlist",
+            "\n\n๏ Command for admins and member can you see with command bellow."
+            "\n • `/mhelp` - checking help music module (only in pm bot)"
+            "\n • `/msettings` - setting your authorization music module",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="Teddy_"),
                     ]
                 ]
             ),
@@ -541,7 +529,7 @@ def Source_about_callback(update, context):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="Teddy_"),
                         ],
                         [
                             InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
@@ -603,7 +591,7 @@ def get_help(update: Update, context: CallbackContext):
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
         text = (
-            "𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴𝙴 𝙰𝚅𝙰𝙸𝙻𝙰𝙱𝙻𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝚃𝙷𝙴 *{}* 𝙼𝙾𝙳𝚄𝙻𝙴:\n".format(
+            "Here is the available help for the *{}* module:\n".format(
                 HELPABLE[module].__mod_name__
             )
             + HELPABLE[module].helps
@@ -680,7 +668,7 @@ def settings_button(update: Update, context: CallbackContext):
             chat_id = mod_match.group(1)
             module = mod_match.group(2)
             chat = bot.get_chat(chat_id)
-            text = "*{}* 𝙷𝙰𝚂 𝚃𝙷𝙴 𝙵𝙾𝙻𝙻𝙾𝚆𝙸𝙽𝙶 𝚂𝙴𝚃𝚃𝙸𝙽𝙶𝚂 𝙵𝙾𝚁 𝚃𝙷𝙴 *{}* 𝙼𝙾𝙳𝚄𝙻𝙴 ☞︎︎︎\n\n".format(
+            text = gs(chat.id, "pm_settings_groups_text").format(
                 escape_markdown(chat.title), CHAT_SETTINGS[module].__mod_name__
             ) + CHAT_SETTINGS[module].__chat_settings__(chat_id, user.id)
             query.message.reply_text(
