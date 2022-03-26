@@ -1,8 +1,8 @@
 
 import aiohttp
 from pyrogram import filters
-from Siesta_Robot import pbot
-from Siesta_Robot.utils.errors import capture_err
+from SiestaRobot import pbot
+from SiestaRobot.utils.errors import capture_err
 
 @pbot.on_message(filters.command('gitinfo'))
 @capture_err
