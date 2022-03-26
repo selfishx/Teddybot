@@ -1,41 +1,71 @@
-from bs4 import BeautifulSoup
-import urllib
 import glob
 import io
 import os
 import re
-import aiohttp
+import urllib
 import urllib.request
-from urllib.parse import urlencode
-import requests
-from bs4 import BeautifulSoup
-from PIL import Image
-from search_engine_parser.core.engines.google import Search as GoogleSearch
-
 import bs4
-import html2text
+import requests
+
+from search_engine_parser import GoogleSearch
+from asyncio import sleep
+from datetime import datetime
+from requests import get, post
+from bs4 import BeautifulSoup
 from bing_image_downloader import downloader
+from PIL import Image
+from geopy.geocoders import Nominatim
+from urllib.parse import urlencode
+from urllib.error import URLError, HTTPError
+from telethon.tl import functions, types
 from telethon import *
-from telethon.tl import functions
-from telethon.tl import types
 from telethon.tl.types import *
 
-from SiestaRobot import *
 
+from SiestaRobot import telethn, BOT_NAME
 from SiestaRobot.events import register
-from SiestaRobot import telethn as tbot
-from SiestaRobot.modules.language import gs
 
-opener = urllib.request.build_opener()
-useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
-opener.addheaders = [("User-agent", useragent)]
+@register(pattern="^/gps (.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    if (
+        event.is_group
+        and not await is_register_admin(event.input_chat, event.message.sender_id)
+    ):
+        await event.reply(
+            "You are not Admin. So, You can't use this. Try in my inbox"
+        )
+        return
 
+    args = event.pattern_match.group(1)
+
+    try:
+        geolocator = Nominatim(user_agent="SkittBot")
+        location = args
+        geoloc = geolocator.geocode(location)
+        longitude = geoloc.longitude
+        latitude = geoloc.latitude
+        gm = "https://www.google.com/maps/search/{},{}".format(latitude, longitude)
+        await telethn.send_file(
+            event.chat_id,
+            file=types.InputMediaGeoPoint(
+                types.InputGeoPoint(float(latitude), float(longitude))
+            ),
+        )
+        await event.reply(
+            "Open with: [Google Maps]({})".format(gm),
+            link_preview=False,
+        )
+    except Exception as e:
+        print(e)
+        await event.reply("I can't find that")
 
 @register(pattern="^/google (.*)")
 async def _(event):
     if event.fwd_from:
         return
-
+    
     webevent = await event.reply("searching........")
     match = event.pattern_match.group(1)
     page = re.findall(r"page=\d+", match)
@@ -61,12 +91,11 @@ async def _(event):
         "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
     )
 
-
-@register(pattern="^/image (.*)")
+@register(pattern="^/img (.*)")
 async def img_sampler(event):
     if event.fwd_from:
         return
-
+    
     query = event.pattern_match.group(1)
     jit = f'"{query}"'
     downloader.download(
@@ -82,7 +111,7 @@ async def img_sampler(event):
     files_grabbed = []
     for files in types:
         files_grabbed.extend(glob.glob(files))
-    await tbot.send_file(event.chat_id, files_grabbed, reply_to=event.id)
+    await telethn.send_file(event.chat_id, files_grabbed, reply_to=event.id)
     os.chdir("/app")
     os.system("rm -rf store")
 
@@ -90,78 +119,6 @@ async def img_sampler(event):
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
 opener.addheaders = [("User-agent", useragent)]
-
-
-@register(pattern=r"^/reverse(?: |$)(\d*)")
-async def okgoogle(img):
-    """For .reverse command, Google search images and stickers."""
-    if os.path.isfile("okgoogle.png"):
-        os.remove("okgoogle.png")
-
-    message = await img.get_reply_message()
-    if message and message.media:
-        photo = io.BytesIO()
-        await tbot.download_media(message, photo)
-    else:
-        await img.reply("`Rєρℓу тσ ρнσтσ σя ѕтι¢кєя иιggєя.`")
-        return
-
-    if photo:
-        dev = await img.reply("`Pяσ¢єѕѕιиg...`")
-        try:
-            image = Image.open(photo)
-        except OSError:
-            await dev.edit("`υиѕυρρσятє∂ ѕєχυαℓιту, мσѕт ℓιкєℓу.`")
-            return
-        name = "okgoogle.png"
-        image.save(name, "PNG")
-        image.close()
-        # https://stackoverflow.com/questions/23270175/google-reverse-image-search-using-post-request#28792943
-        searchUrl = "https://www.google.com/searchbyimage/upload"
-        multipart = {"encoded_image": (name, open(name, "rb")), "image_content": ""}
-        response = requests.post(searchUrl, files=multipart, allow_redirects=False)
-        fetchUrl = response.headers["Location"]
-
-        if response != 400:
-            await dev.edit(
-                "`Iмαgє ѕυ¢¢єѕѕfυℓℓу υρℓσα∂є∂ тσ gσσgℓє. мαу вє.`"
-                "\n`Parsing source now. Maybe.`"
-            )
-        else:
-            await dev.edit("`Gσσgℓє тσℓ∂ мє тσ f**к σff`")
-            return
-
-        os.remove(name)
-        match = await ParseSauce(fetchUrl + "&preferences?hl=en&fg=1#languages")
-        guess = match["best_guess"]
-        imgspage = match["similar_images"]
-
-        if guess and imgspage:
-            await dev.edit(f"[{guess}]({fetchUrl})\n\n`Lσσкιиg fσя тнιѕ ιмαgє...`")
-        else:
-            await dev.edit("`Cαи'т fιи∂ тнιѕ ριє¢є σf ѕнιт.`")
-            return
-
-        if img.pattern_match.group(1):
-            lim = img.pattern_match.group(1)
-        else:
-            lim = 3
-        images = await scam(match, lim)
-        yeet = []
-        for i in images:
-            k = requests.get(i)
-            yeet.append(k.content)
-        try:
-            await tbot.send_file(
-                entity=await tbot.get_input_entity(img.chat_id),
-                file=yeet,
-                reply_to=img,
-            )
-        except TypeError:
-            pass
-        await dev.edit(
-            f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})"
-        )
 
 
 async def ParseSauce(googleurl):
@@ -210,7 +167,7 @@ async def scam(results, lim):
 
 @register(pattern="^/app (.*)")
 async def apk(e):
-
+    
     try:
         app_name = e.pattern_match.group(1)
         remove_space = app_name.split(" ")
@@ -251,13 +208,13 @@ async def apk(e):
         app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
         app_details += " <b>" + app_name + "</b>"
         app_details += (
-            "\n\n<code>Dєνєℓσρєя :</code> <a href='"
+            "\n\n<code>Developer :</code> <a href='"
             + app_dev_link
             + "'>"
             + app_dev
             + "</a>"
         )
-        app_details += "\n<code>Rαтιиg :</code> " + app_rating.replace(
+        app_details += "\n<code>Rating :</code> " + app_rating.replace(
             "Rated ", "⭐ "
         ).replace(" out of ", "/").replace(" stars", "", 1).replace(
             " stars", "⭐ "
@@ -265,20 +222,129 @@ async def apk(e):
             "five", "5"
         )
         app_details += (
-            "\n<code>Fєαтυяєѕ :</code> <a href='"
+            "\n<code>Features :</code> <a href='"
             + app_link
             + "'>View in Play Store</a>"
         )
-        app_details += "\n\n===> Tє∂∂у <==="
+        app_details += f"\n\n===> *{BOT_NAME}* <==="
         await e.reply(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
-        await e.reply("Nσ яєѕυℓтѕ fσυи∂ ιи ѕєαя¢н. ρℓєαѕ єитєя *ναℓι∂ αρρ иαмє*")
+        await e.reply("No result found in search. Please enter **Valid app name**")
     except Exception as err:
-        await e.reply("Eχ¢єρтισи σ¢¢υяє∂:- " + str(err))
+        await e.reply("Exception Occured:- " + str(err))
 
 
-def helps(chat):
-    return gs(chat, "search_help")
+def progress(current, total):
+    """Calculate and return the download progress with given arguments."""
+    print(
+        "Downloaded {} of {}\nCompleted {}".format(
+            current, total, (current / total) * 100
+        )
+    )
 
 
-__mod_name__ = "Search"
+async def is_register_admin(chat, user):
+    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
+
+        return isinstance(
+            (
+                await telethn(functions.channels.GetParticipantRequest(chat, user))
+            ).participant,
+            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
+        )
+    if isinstance(chat, types.InputPeerChat):
+
+        ui = await telethn.get_peer_id(user)
+        ps = (
+            await telethn(functions.messages.GetFullChatRequest(chat.chat_id))
+        ).full_chat.participants.participants
+        return isinstance(
+            next((p for p in ps if p.user_id == ui), None),
+            (types.ChatParticipantAdmin, types.ChatParticipantCreator),
+        )
+    return None
+
+
+@register(pattern=r"^/getqr$")
+async def parseqr(qr_e):
+    """For /getqr command, get QR Code content from the replied photo."""
+    if qr_e.fwd_from:
+        return
+    start = datetime.now()
+    downloaded_file_name = await qr_e.telethn.download_media(
+        await qr_e.get_reply_message(), progress_callback=progress
+    )
+    url = "https://api.qrserver.com/v1/read-qr-code/?outputformat=json"
+    with open(downloaded_file_name, "rb") as file:
+        files = {"file": file}
+        resp = post(url, files=files).json()
+        qr_contents = resp[0]["symbol"][0]["data"]
+    os.remove(downloaded_file_name)
+    end = datetime.now()
+    duration = (end - start).seconds
+    await qr_e.reply(
+        "Obtained QRCode contents in {} seconds, Inside the QR Code was:\n{}".format(duration, qr_contents)
+    )
+
+
+@register(pattern=r"^/makeqr(?: |$)([\s\S]*)")
+async def make_qr(qrcode):
+    """For /makeqr command, make a QR Code containing the given content."""
+    if qrcode.fwd_from:
+        return
+    start = datetime.now()
+    input_str = qrcode.pattern_match.group(1)
+    message = "USAGE: `/makeqr <text>`"
+    reply_msg_id = None
+    if input_str:
+        message = input_str
+    elif qrcode.reply_to_msg_id:
+        previous_message = await qrcode.get_reply_message()
+        reply_msg_id = previous_message.id
+        if previous_message.media:
+            downloaded_file_name = await qrcode.telethn.download_media(
+                previous_message, progress_callback=progress
+            )
+            m_list = None
+            with open(downloaded_file_name, "rb") as file:
+                m_list = file.readlines()
+            message = "".join(media.decode("UTF-8") + "\r\n" for media in m_list)
+            os.remove(downloaded_file_name)
+        else:
+            message = previous_message.message
+
+    url = "https://api.qrserver.com/v1/create-qr-code/?data={}&\
+size=200x200&charset-source=UTF-8&charset-target=UTF-8\
+&ecc=L&color=0-0-0&bgcolor=255-255-255\
+&margin=1&qzone=0&format=jpg"
+
+    resp = get(url.format(message), stream=True)
+    required_file_name = "temp_qr.png"
+    with open(required_file_name, "w+b") as file:
+        for chunk in resp.iter_content(chunk_size=128):
+            file.write(chunk)
+    await qrcode.telethn.send_file(
+        qrcode.chat_id,
+        required_file_name,
+        reply_to=reply_msg_id,
+        progress_callback=progress,
+    )
+    os.remove(required_file_name)
+    duration = (datetime.now() - start).seconds
+    await qrcode.reply("Created QRCode in {} seconds".format(duration))
+    await sleep(5)
+
+__mod_name__ = "Google"
+
+__help__ = """
+  ➢ `/google <text>` :- Perform a google search
+  ➢ `/img <text>` :- Search Google for images and returns them\nFor greater no. of results specify lim, For eg: `/img hello lim=10`
+  ➢ `/app <appname>` :- Searches for an app in Play Store and returns its details.
+  ➢ `/reverse` :- reply to a sticker, or an image to search it!
+  Do you know that you can search an image with a link too? /reverse picturelink <amount>.
+  ➢ `/gitinfo <github username>` :- Get info of any github profile
+  ➢ `/ytdl <youtube video link` :- download any youtube video in every possible resolution.
+  ➢ `/webss <website url>` :- get screen shot of any website you want.
+  ➢ `/makeqr <text` : make any text to a qr code format
+  ➢ `/getqr <reply to a qrcode>` : decode and get what is inside the qr code.
+"""
