@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 from SiestaRobot import arq
 from SiestaRobot.utils.errors import capture_err
-from SiestaRobot import pgram, BOT_USERNAME
+from SiestaRobot import BOT_USERNAME
 
 
 
