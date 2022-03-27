@@ -180,7 +180,7 @@ def start(update: Update, context: CallbackContext):
                     InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="help_back"),
+                                InlineKeyboardButton(text="back_button", callback_data="help_back"),
                             ]
                         ]
                     ),
@@ -209,30 +209,29 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+        InlineKeyboardButton(text="✨𝐀ʙᴏᴜᴛ Teddy 𝐑ᴏʙᴏᴛ✨", callback_data="siesta_"),
                         ],
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
-                            InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
+                            InlineKeyboardButton(text="ʜᴇʟᴩ", callback_data="help_back"),
+                            InlineKeyboardButton(text="ɪɴʟɪɴᴇ", switch_inline_query_current_chat=""),
                         ],
                         [
                             InlineKeyboardButton(
-                                text=gs(chat.id, "add_bot_to_group_button"), url="t.me/TeddyxRobot_bot?startgroup=new"),
+                                text="ᴀᴅᴅ ʙᴏᴛ ᴛᴏ yᴏᴜʀ ɢʀᴏᴜᴩ", url="t.me/TeddyxRobot_bot?startgroup=new"),
                         ]
                     ]
                 ),
-                parse_mode=ParseMode.MARKDOWN,
+                
+          parse_mode=ParseMode.MARKDOWN,
+
                 timeout=60,
                 disable_web_page_preview=False,
             )
     else:
         update.effective_message.reply_text(
-            text=gs(chat.id, "group_start_text").format(
-                escape_markdown(uptime),
-                ),
-            parse_mode=ParseMode.MARKDOWN
+            f"<b>𝐇ɪ Dᴀʀʟɪɴɢ ❤️ 𝐈'ᴍ Tᴇᴅᴅy 𝐑ᴏʙᴏᴛ</b>\n<b> 𝐒ᴛᴀʀᴛᴇᴅ 𝐖ᴏʀᴋɪɴɢ 𝐒ɪɴᴄᴇ </b> <code>⚡️{uptime}⚡️</code>",
+            parse_mode=ParseMode.HTML
        )
-
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -328,7 +327,7 @@ def help_button(update, context):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="help_back"),
+                            InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back"),
                         ]
                     ]
                 ),
@@ -390,18 +389,18 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="Admins", callback_data="siesta_admin"),
-                        InlineKeyboardButton(text=gs(chat.id, "notes_button"), callback_data="siesta_notes"),
+                        InlineKeyboardButton(text="ᴀᴅᴍɪɴꜱ", callback_data="siesta_admin"),
+                        InlineKeyboardButton(text="ɴᴏᴛᴇꜱ", callback_data="siesta_notes"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), callback_data="siesta_support"),
-                        InlineKeyboardButton(text="Credits", callback_data="siesta_credit"),
+                        InlineKeyboardButton(text="ꜱᴜᴩᴩᴏʀᴛ", callback_data="siesta_support"),
+                        InlineKeyboardButton(text="ᴄʀᴇᴅɪᴛꜱ", callback_data="siesta_credit"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "source_button"), url="https://xnxx.comt"),
+                        InlineKeyboardButton(text="ꜱᴏᴜʀᴄᴇ", url="https://xnxx.comt"),
                     ],
                     [
-                    InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_back"),
+                    InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="siesta_back"),
                     ]
                 ]
             ),
@@ -418,14 +417,14 @@ def siesta_about_callback(update, context):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+                            InlineKeyboardButton(text="ᴀʙᴏᴜᴛ", callback_data="siesta_"),
                         ],
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
-                            InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
+                            InlineKeyboardButton(text="ʜᴇʟᴩ", callback_data="help_back"),
+                            InlineKeyboardButton(text="ɪɴʟɪɴᴇ", switch_inline_query_current_chat=""),
                         ],
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "add_bot_to_group_button"), url="t.me/TeddyxRobot_bot?startgroup=new"),
+                            InlineKeyboardButton(text="ᴀᴅᴅ ʙᴏᴛ ᴛᴏ yᴏᴜʀ ɢʀᴏᴜᴩ", url="t.me/TeddyxRobot_bot?startgroup=new"),
                         ]
                     ]
                 ),
@@ -449,7 +448,7 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="siesta_"),
                     ]
                 ]
             ),
@@ -462,7 +461,7 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="siesta_"),
                     ]
                 ]
             ),
@@ -474,11 +473,11 @@ def siesta_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "support_chat_link_button"), url="t.me/XO_XPAM"),
-                        InlineKeyboardButton(text=gs(chat.id, "updates_channel_link_button"), url="https://t.me/XO_XPAM"),
+                        InlineKeyboardButton(text="ꜱᴜᴩᴩᴏʀᴛ", url="t.me/XO_XPAM"),
+                        InlineKeyboardButton(text="ᴜᴩᴅᴀᴛᴇꜱ", url="https://t.me/XO_XPAM"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="siesta_"),
                     ]
                 ]
             ),
@@ -495,7 +494,7 @@ def siesta_about_callback(update, context):
                         InlineKeyboardButton(text="Suru", url="https://github.com/SuruXmanager"),
                     ],
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="siesta_"),
                     ]
                 ]
             ),
@@ -523,7 +522,7 @@ def Source_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
+                        InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="siesta_"),
                     ]
                 ]
             ),
@@ -539,14 +538,14 @@ def Source_about_callback(update, context):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "about_button"), callback_data="siesta_"),
+                            InlineKeyboardButton(text="ᴀʙᴏᴜᴛ", callback_data="siesta_"),
                         ],
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "help_button"), callback_data="help_back"),
-                            InlineKeyboardButton(text=gs(chat.id, "inline_button"), switch_inline_query_current_chat=""),
+                            InlineKeyboardButton(text="ʜᴇʟᴩ", callback_data="help_back"),
+                            InlineKeyboardButton(text="ɪɴʟɪɴᴇ", switch_inline_query_current_chat=""),
                         ],
                         [
-                            InlineKeyboardButton(text=gs(chat.id, "add_bot_to_group_button"), url="t.me/TeddyxRobot_bot?startgroup=new"),
+                            InlineKeyboardButton(text="ᴀᴅᴅ ʙᴏᴛ ᴛᴏ yᴏᴜʀ ɢʀᴏᴜᴩ", url="t.me/TeddyxRobot_bot?startgroup=new"),
                         ]
                     ]
                 ),
@@ -612,7 +611,7 @@ def get_help(update: Update, context: CallbackContext):
             InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="help_back"),
+                        InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back"),
                     ]
                 ]
             ),
@@ -688,7 +687,7 @@ def settings_button(update: Update, context: CallbackContext):
                     [
                         [
                             InlineKeyboardButton(
-                                text=gs(chat.id, "back_button"),
+                                text=gs("ʙᴀᴄᴋ"),
                                 callback_data="stngs_back({})".format(chat_id),
                             )
                         ]
