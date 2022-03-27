@@ -40,13 +40,13 @@ def _onUnMuteRequest(client, cb):
                 except UserNotParticipant:
                     client.answer_callback_query(
                         cb.id,
-                        text=f"❗ Join our @{channel} channel and press 'Unmute Me' button.",
+                        text=f"❗ ᴊᴏɪɴ ᴏᴜʀ @{channel} ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ᴩʀᴇꜱꜱ UNMUTE ME ʙᴜᴛᴛᴏɴ.",
                         show_alert=True,
                     )
             else:
                 client.answer_callback_query(
                     cb.id,
-                    text="❗ You have been muted by admins due to some other reason.",
+                    text="❗ yᴏᴜ ʜᴀᴠᴇ ʙᴇᴇɴ ᴍᴜᴛᴇᴅ ʙy ᴀᴅᴍɪɴꜱ ᴅᴜᴇ ᴛᴏ ꜱᴏᴍᴇ ᴏᴛʜᴇʀ ʀᴇᴀꜱᴏɴ.",
                     show_alert=True,
                 )
         else:
@@ -60,7 +60,7 @@ def _onUnMuteRequest(client, cb):
             else:
                 client.answer_callback_query(
                     cb.id,
-                    text="❗ Warning! Don't press the button when you cn talk.",
+                    text="❗ ᴡᴀʀɴɪɴɢ! ᴅᴏɴᴛ ᴩʀᴇꜱꜱ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ᴡʜᴇɴ yᴏᴜ ᴄɴ ᴛᴀʟᴋ.",
                     show_alert=True,
                 )
 
@@ -80,7 +80,7 @@ def _check_member(client, message):
             except UserNotParticipant:
                 try:
                     sent_message = message.reply_text(
-                        "Welcome {} 🙏 \n **You haven't joined our @{} Channel yet**👷 \n \nPlease Join [Our Channel](https://t.me/{}) and hit the **UNMUTE ME** Button. \n \n ".format(
+                        "ᴡᴇʟᴄᴏᴍᴇ {} 🙏 \n **yᴏᴜ ʜᴀᴠᴇɴ'ᴛ ᴊᴏɪɴᴇᴅ ᴏᴜʀ @{} ᴄʜᴀɴɴᴇʟ yᴇᴛ**👷 \n \nᴩʟᴇᴀꜱe ᴊᴏɪɴ [Our Channel](https://t.me/{}) ᴀɴᴅ ʜɪᴛ ᴛʜᴇ **UNMUTE ME** ʙᴜᴛᴛᴏɴ. \n \n ".format(
                             message.from_user.mention, channel, channel
                         ),
                         disable_web_page_preview=True,
@@ -88,13 +88,13 @@ def _check_member(client, message):
                             [
                                 [
                                     InlineKeyboardButton(
-                                        "Join Channel",
+                                        "ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ",
                                         url="https://t.me/{}".format(channel),
                                     )
                                 ],
                                 [
                                     InlineKeyboardButton(
-                                        "Unmute Me", callback_data="onUnMuteRequest"
+                                        "ᴜɴᴍᴜᴛᴇ ᴍᴇ", callback_data="onUnMuteRequest"
                                     )
                                 ],
                             ]
@@ -173,31 +173,7 @@ def config(client, message):
         )
 
 
-__help__ = """
-*Force Subscribe:*
-❂ Emiko can mute members who are not subscribed your channel until they subscribe
-❂ When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them
-❂*Setup*
-*Only creator*
-❂ Add me in your group as admin
-❂ Add me in your channel as admin 
- 
-*Commmands*
-❂ /fsub {channel username} - To turn on and setup the channel.
-  💡Do this first...
-❂ /fsub - To get the current settings.
-❂ /fsub disable - To turn of ForceSubscribe..
-  💡If you disable fsub, you need to set again for working.. /fsub {channel username} 
-❂ /fsub clear - To unmute all members who muted by me.
-*Federation*
-Everything is fun, until a spammer starts entering your group, and you have to block it. Then you need to start banning more, and more, and it hurts.
-But then you have many groups, and you don't want this spammer to be in one of your groups - how can you deal? Do you have to manually block it, in all your groups?\n
-*No longer!* With Federation, you can make a ban in one chat overlap with all other chats.\n
-You can even designate federation admins, so your trusted admin can ban all the spammers from chats you want to protect.\n
-*Commands:*\n
-Feds are now divided into 3 sections for your ease.
-• `/fedownerhelp`*:* Provides help for fed creation and owner only commands
-• `/fedadminhelp`*:* Provides help for fed administration commands
-• `/feduserhelp`*:* Provides help for commands anyone can use
-"""
+def helps(chat):
+    return gs(chat, "fsub_feds_help")
+
 __mod_name__ = "F-Sub/Feds"
