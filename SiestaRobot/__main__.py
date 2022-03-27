@@ -83,10 +83,10 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-SIESTA_IMG = "https://telegra.ph/file/6d3e3ef24f64fb6e35df0.jpg"
+SIESTA_IMG = "https://telegra.ph/file/da4dc01511f2c8aedd0ba.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project by contacting @saint_foire \
+ You can support the project by contacting @Sweetu_9014 \
  Supporting isnt always financial! \
  Those who cannot provide monetary support are welcome to help us develop the bot at ."""
 
@@ -376,7 +376,15 @@ def siesta_about_callback(update, context):
     chat = update.effective_chat
     if query.data == "siesta_":
         query.message.edit_text(
-            text=gs(chat.id, "pm_about_text"),
+            text="๏ I'm *Tᴇᴅᴅy*, a powerful group management bot built to help you manage your group easily."
+            "\n• I can restrict users."
+            "\n• I can greet users with customizable welcome messages and even set a group's rules."
+            "\n• I have an advanced anti-flood system."
+            "\n• I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc."
+            "\n• I have a note keeping system, blacklists, and even predetermined replies on certain keywords."
+            "\n• I check for admins' permissions before executing any command and more stuffs"
+            "\n\n_Teddys's licensed under the GNU General Public License v3.0_"
+            "\n\n Click on button bellow to get basic help for TeddyRobot.",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -428,7 +436,14 @@ def siesta_about_callback(update, context):
 
     elif query.data == "siesta_admin":
         query.message.edit_text(
-            text=gs(chat.id, "pm_about_admin_text"),
+            text=f"*๏ Let's make your group bit effective now*"
+            "\nCongragulations, TeddyRobot now ready to manage your group."
+            "\n\n*Admin Tools*"
+            "\nBasic Admin tools help you to protect and powerup your group."
+            "\nYou can ban members, Kick members, Promote someone as admin through commands of bot."
+            "\n\n*Greetings*"
+            "\nLets set a welcome message to welcome new users coming to your group."
+            "\nsend `/setwelcome [message]` to set a welcome message!",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -480,10 +495,6 @@ def siesta_about_callback(update, context):
                         InlineKeyboardButton(text="Suru", url="https://github.com/SuruXmanager"),
                     ],
                     [
-                        InlineKeyboardButton(text="Paul Larsen", url="https://github.com/PaulSonOfLars"),
-                        InlineKeyboardButton(text="TheHamkerCat", url="https://github.com/TheHamkerCat"),
-                    ],
-                    [
                         InlineKeyboardButton(text=gs(chat.id, "back_button"), callback_data="siesta_"),
                     ]
                 ]
@@ -497,9 +508,16 @@ def Source_about_callback(update, context):
     if query.data == "source_":
         query.message.edit_text(
             text="๏›› This advance command for Musicplayer."
-            "\n\n๏ Command for admins and member can you see with command bellow."
-            "\n • `/mhelp` - checking help music module (only in pm bot)"
-            "\n • `/msettings` - setting your authorization music module",
+            "\n\n๏ Command for admins only."
+            "\n • `/reload` - For refreshing the adminlist."
+            "\n • `/pause` - To pause the playback."
+            "\n • `/resume` - To resuming the playback You've paused."
+            "\n • `/skip` - To skipping the player."
+            "\n • `/end` - For end the playback."
+            "\n • `/musicplayer <on/off>` - Toggle for turn ON or turn OFF the musicplayer."
+            "\n\n๏ Command for all members."
+            "\n • `/play` <query /reply audio> - Playing music via YouTube."
+            "\n • `/playlist` - To playing a playlist of groups or your personal playlist",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -620,7 +638,7 @@ def send_settings(chat_id, user_id, user=False):
         else:
             dispatcher.bot.send_message(
                 user_id,
-                "Seems like there aren't any user specific settings available :'(",
+                "ꜱᴇᴇᴍꜱ ʟɪᴋᴇ ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴy ᴜꜱᴇʀ ꜱᴩᴇᴄɪꜰɪᴄ ꜱᴇᴛᴛɪɴɢ ᴀᴠᴀɪʟᴀʙʟᴇ :'(",
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -640,8 +658,8 @@ def send_settings(chat_id, user_id, user=False):
         else:
             dispatcher.bot.send_message(
                 user_id,
-                "Seems like there aren't any chat settings available :'(\nSend this "
-                "in a group chat you're admin in to find its current settings!",
+                "Sᴇᴇᴍꜱ ʟɪᴋᴇ ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴy ᴄʜᴀᴛ ꜱᴇᴛᴛɪɴɢ ᴀᴠᴀɪʟᴀʙʟᴇ :'(\nSend this "
+                "ɪɴ ᴀ ɢʀᴏᴜᴩ ᴄʜᴀᴛ yᴏᴜ'ʀᴇ ᴀᴅᴍɪɴ ɪɴ ᴛᴏ ꜰɪɴᴅ ɪᴛꜱ ᴄᴜʀʀᴇɴᴛ ꜱᴇᴛᴛɪɴɢꜱ!",
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -752,7 +770,7 @@ def get_settings(update: Update, context: CallbackContext):
                 ),
             )
         else:
-            text = "Click here to check your settings."
+            text = "Cʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴄʜᴇᴄᴋ yᴏᴜʀ ꜱᴇᴛᴛɪɴɢꜱ ⚡️."
 
     else:
         send_settings(chat.id, user.id, True)
@@ -816,7 +834,7 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}", 
-                f"""**Yes Darling ❤️, i am activated!**""",
+                "нℓσ ∂αяℓιиg ❤️, ι'м αℓινє 🔥.",
                 parse_mode=ParseMode.MARKDOWN
             )
         except Unauthorized:
