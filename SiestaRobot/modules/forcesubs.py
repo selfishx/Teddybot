@@ -40,7 +40,7 @@ def _onUnMuteRequest(client, cb):
                 except UserNotParticipant:
                     client.answer_callback_query(
                         cb.id,
-                        text=f"❗ Join our @{channel} channel and press 'UnMute Me' button.",
+                        text=f"❗ Join our @{channel} channel and press 'Unmute Me' button.",
                         show_alert=True,
                     )
             else:
@@ -50,9 +50,7 @@ def _onUnMuteRequest(client, cb):
                     show_alert=True,
                 )
         else:
-            if (
-                not client.get_chat_member(chat_id, (client.get_me()).id).status
-                == "administrator"
+            if (not client.get_chat_member(chat_id, (client.get_me()).id).status == "administrator"
             ):
                 client.send_message(
                     chat_id,
@@ -62,7 +60,7 @@ def _onUnMuteRequest(client, cb):
             else:
                 client.answer_callback_query(
                     cb.id,
-                    text="❗ Warning! Don't press the button when you can talk.",
+                    text="❗ Warning! Don't press the button when you cn talk.",
                     show_alert=True,
                 )
 
@@ -73,9 +71,7 @@ def _check_member(client, message):
     chat_db = sql.fs_settings(chat_id)
     if chat_db:
         user_id = message.from_user.id
-        if (
-            not client.get_chat_member(chat_id, user_id).status
-            in ("administrator", "creator")
+        if (not client.get_chat_member(chat_id, user_id).status in ("administrator", "creator")
             and not user_id in SUDO_USERS
         ):
             channel = chat_db.channel
@@ -84,7 +80,7 @@ def _check_member(client, message):
             except UserNotParticipant:
                 try:
                     sent_message = message.reply_text(
-                        "Welcome {} 🙏 \n **You havent joined our @{} Channel yet** 😭 \n \nPlease Join [Our Channel](https://t.me/{}) and hit the **UNMUTE ME** Button. \n \n ".format(
+                        "Welcome {} 🙏 \n **You haven't joined our @{} Channel yet**👷 \n \nPlease Join [Our Channel](https://t.me/{}) and hit the **UNMUTE ME** Button. \n \n ".format(
                             message.from_user.mention, channel, channel
                         ),
                         disable_web_page_preview=True,
@@ -109,20 +105,20 @@ def _check_member(client, message):
                     )
                 except ChatAdminRequired:
                     sent_message.edit(
-                        "❗ **Daisy is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
+                        "😕 **Emiko is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
                     )
 
             except ChatAdminRequired:
                 client.send_message(
                     chat_id,
-                    text=f"❗ **I not an admin of @{channel} channel.**\n__Give me admin of that channel and retry.\n#Ending FSub...__",
+                    text=f"😕 **I not an admin of @{channel} channel.**\n__Give me admin of that channel and retry.\n#Ending FSub...__",
                 )
 
 
 @pbot.on_message(filters.command(["forcesubscribe", "fsub"]) & ~filters.private)
 def config(client, message):
     user = client.get_chat_member(message.chat.id, message.from_user.id)
-    if user.status is "creator" or user.user.id in SUDO_USERS:
+    if user.status == "creator" or user.user.id in SUDO_USERS:
         chat_id = message.chat.id
         if len(message.command) > 1:
             input_str = message.command[1]
@@ -141,10 +137,10 @@ def config(client, message):
                         if chat_member.restricted_by.id == (client.get_me()).id:
                             client.unban_chat_member(chat_id, chat_member.user.id)
                             time.sleep(1)
-                    sent_message.edit("✅ **UnMuted all members who are muted by me.**")
+                    sent_message.edit("✅ **Unmuted all members who are muted by me.**")
                 except ChatAdminRequired:
                     sent_message.edit(
-                        "❗ **I am not an admin in this chat.**\n__I can't unmute members because i am not an admin in this chat make me admin with ban user permission.__"
+                        "😕 **I am not an admin in this chat.**\n__I can't unmute members because i am not an admin in this chat make me admin with ban user permission.__"
                     )
             else:
                 try:
@@ -156,7 +152,7 @@ def config(client, message):
                     )
                 except UserNotParticipant:
                     message.reply_text(
-                        f"❗ **Not an Admin in the Channel**\n__I am not an admin in the [channel](https://t.me/{input_str}). Add me as a admin in order to enable ForceSubscribe.__",
+                        f"😕 **Not an Admin in the Channel**\n__I am not an admin in the [channel](https://t.me/{input_str}). Add me as a admin in order to enable ForceSubscribe.__",
                         disable_web_page_preview=True,
                     )
                 except (UsernameNotOccupied, PeerIdInvalid):
@@ -179,19 +175,29 @@ def config(client, message):
 
 __help__ = """
 *Force Subscribe:*
-❍ Asuna can mute members who are not subscribed your channel until they subscribe
-❍ When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them
-*Setup*
+❂ Emiko can mute members who are not subscribed your channel until they subscribe
+❂ When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them
+❂*Setup*
 *Only creator*
-❍ Add me in your group as admin
-❍ Add me in your channel as admin 
+❂ Add me in your group as admin
+❂ Add me in your channel as admin 
  
 *Commmands*
- ❍ /fsub {channel username} - To turn on and setup the channel.
+❂ /fsub {channel username} - To turn on and setup the channel.
   💡Do this first...
- ❍ /fsub - To get the current settings.
- ❍ /fsub disable - To turn of ForceSubscribe..
+❂ /fsub - To get the current settings.
+❂ /fsub disable - To turn of ForceSubscribe..
   💡If you disable fsub, you need to set again for working.. /fsub {channel username} 
- ❍ /fsub clear - To unmute all members who muted by me.
+❂ /fsub clear - To unmute all members who muted by me.
+*Federation*
+Everything is fun, until a spammer starts entering your group, and you have to block it. Then you need to start banning more, and more, and it hurts.
+But then you have many groups, and you don't want this spammer to be in one of your groups - how can you deal? Do you have to manually block it, in all your groups?\n
+*No longer!* With Federation, you can make a ban in one chat overlap with all other chats.\n
+You can even designate federation admins, so your trusted admin can ban all the spammers from chats you want to protect.\n
+*Commands:*\n
+Feds are now divided into 3 sections for your ease.
+• `/fedownerhelp`*:* Provides help for fed creation and owner only commands
+• `/fedadminhelp`*:* Provides help for fed administration commands
+• `/feduserhelp`*:* Provides help for commands anyone can use
 """
-__mod_name__ = "F-Sub"
+__mod_name__ = "F-Sub/Feds"
