@@ -29,7 +29,7 @@ def quotes(update: Update, context: CallbackContext):
     msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
     keyboard = InlineKeyboardMarkup([[
         InlineKeyboardButton(
-            text="Change🔁",
+            text="ᴄʜᴀɴɢᴇ🔁",
             callback_data="change_quote")]])
     message.reply_text(
         msg,
@@ -44,7 +44,7 @@ def change_quote(update: Update, context: CallbackContext):
     msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
     keyboard = InlineKeyboardMarkup([[
         InlineKeyboardButton(
-            text="Change🔁",
+            text="ᴄʜᴀɴɢᴇ🔁",
             callback_data="quote_change")]])
     message.edit_text(msg, reply_markup=keyboard,
                       parse_mode=ParseMode.HTML)
